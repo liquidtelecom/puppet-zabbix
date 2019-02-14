@@ -21,6 +21,7 @@ class zabbix::params {
       $manage_repo           = true
       $zabbix_package_agent  = 'zabbix-agent'
       $agent_configfile_path = '/etc/zabbix/zabbix_agentd.conf'
+      $agent_include         = '/etc/zabbix/zabbix_agentd.d'
       $agent_config_owner    = 'zabbix'
       $agent_zabbix_user     = 'zabbix'
       $agent_config_group    = 'zabbix'
@@ -35,6 +36,7 @@ class zabbix::params {
       $manage_repo           = false
       $zabbix_package_agent  = 'zabbix-agent'
       $agent_configfile_path = '/etc/zabbix/zabbix_agentd.conf'
+      $agent_include         = '/etc/zabbix/zabbix_agentd.d'
       $agent_config_owner    = 'zabbix-agent'
       $agent_zabbix_user     = 'zabbix-agent'
       $agent_config_group    = 'zabbix-agent'
@@ -49,11 +51,27 @@ class zabbix::params {
       $manage_repo           = false
       $zabbix_package_agent  = 'zabbix-agent'
       $agent_configfile_path = '/etc/zabbix_agentd.conf'
+      $agent_include         = '/etc/zabbix/zabbix_agentd.d'
       $agent_config_owner    = 'zabbix'
       $agent_zabbix_user     = 'zabbix'
       $agent_config_group    = 'zabbix'
       $agent_pidfile         = '/var/run/zabbix/zabbix_agentd.pid'
       $server_zabbix_user    = 'zabbix'
+    }
+    'windows': {
+      $server_fpinglocation  = undef
+      $server_fping6location = undef
+      $proxy_fpinglocation   = undef
+      $proxy_fping6location  = undef
+      $manage_repo           = false
+      $zabbix_package_agent  = 'zabbix-agent'
+      $agent_configfile_path = 'C:\ProgramData\zabbix\zabbix_agentd.conf'
+      $agent_include         = 'C:\ProgramData\zabbix\zabbix_agentd.d'
+      $agent_config_owner    = undef
+      $agent_zabbix_user     = undef
+      $agent_config_group    = undef
+      $agent_pidfile         = undef
+      $server_zabbix_user    = undef
     }
     default  : {
       $server_fpinglocation  = '/usr/sbin/fping'
@@ -63,6 +81,7 @@ class zabbix::params {
       $manage_repo           = true
       $zabbix_package_agent  = 'zabbix-agent'
       $agent_configfile_path = '/etc/zabbix/zabbix_agentd.conf'
+      $agent_include         = '/etc/zabbix/zabbix_agentd.d'
       $agent_config_owner    = 'zabbix'
       $agent_zabbix_user     = 'zabbix'
       $agent_config_group    = 'zabbix'
@@ -208,7 +227,6 @@ class zabbix::params {
   $agent_hostmetadataitem                   = undef
   $agent_hostname                           = undef
   $agent_hostnameitem                       = 'system.hostname'
-  $agent_include                            = '/etc/zabbix/zabbix_agentd.d'
   $agent_include_purge                      = true
   $agent_listenip                           = undef
   $agent_listenport                         = '10050'
@@ -248,6 +266,10 @@ class zabbix::params {
     $agent_logtype                          = 'system'
     $agent_logfile                          = undef
     $agent_logfilesize                      = undef
+  } elsif $facts['os']['name'] == 'windows' {
+    $agent_logtype                          = 'file'
+    $agent_logfile                          = 'c:\zabbix_agentd.log'
+    $agent_logfilesize                      = '100'
   } else {
     $agent_logtype                          = 'file'
     $agent_logfile                          = '/var/log/zabbix/zabbix_agentd.log'
