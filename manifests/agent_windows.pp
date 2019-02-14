@@ -338,7 +338,7 @@ class zabbix::agent_windows (
   # Configuring the zabbix-agent configuration file
   file { $agent_configfile_path:
     ensure  => present,
-    notify  => Service['zabbix-agent'],
+    notify  => Service['Zabbix Agent'],
     require => Package[$zabbix_package_agent],
     replace => true,
     content => template('zabbix/zabbix_agentd_windows.conf.erb'),
@@ -349,7 +349,7 @@ class zabbix::agent_windows (
     ensure  => directory,
     recurse => true,
     purge   => $include_dir_purge,
-    notify  => Service['zabbix-agent'],
+    notify  => Service['Zabbix Agent'],
     require => File[$agent_configfile_path],
   }
 
