@@ -201,7 +201,7 @@
 # Copyright 2014 Werner Dijkerman
 #
 
-class zabbix::agent (
+class zabbix::agent_windows (
   $zabbix_version                         = $zabbix::params::zabbix_version,
   $zabbix_package_state                   = $zabbix::params::zabbix_package_state,
   $zabbix_package_agent                   = $zabbix::params::zabbix_package_agent,
