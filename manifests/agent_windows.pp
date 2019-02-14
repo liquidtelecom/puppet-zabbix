@@ -327,7 +327,7 @@ class zabbix::agent_windows (
     provider     => chocolatey,
   }
 
-  service { 'zabbix-agent':
+  service { 'Zabbix Agent':
     ensure     => running,
     enable     => true,
     hasstatus  => true,
