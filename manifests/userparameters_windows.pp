@@ -72,7 +72,7 @@ define zabbix::userparameters_windows (
       group   => $agent_config_group,
       mode    => '0644',
       source  => $source,
-      notify  => Service['zabbix agent'],
+      notify  => Service['Zabbix Agent'],
       require => Package[$zabbix_package_agent],
     }
   }
@@ -84,7 +84,7 @@ define zabbix::userparameters_windows (
       group   => $agent_config_group,
       mode    => '0644',
       content => $content,
-      notify  => Service['zabbix agent'],
+      notify  => Service['Zabbix Agent'],
       require => Package[$zabbix_package_agent],
     }
   }
@@ -96,7 +96,7 @@ define zabbix::userparameters_windows (
       group   => $agent_config_group,
       mode    => '0755',
       source  => $script,
-      notify  => Service['zabbix agent'],
+      notify  => Service['Zabbix Agent'],
       require => Package[$zabbix_package_agent],
     }
   }
